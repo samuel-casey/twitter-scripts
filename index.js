@@ -3,11 +3,12 @@ const _ = require('lodash');
 const axios = require('axios');
 const fs = require('fs');
 const Twit = require('twit');
+const config = require('./config')
 require('dotenv').config();
 
 // USER-SPECIFIC GLOBALS
-const KEYWORDS = ['lexfridman'];
-const START_DATE = new Date('1/17/21').getTime();
+const { KEYWORDS, START_DAY } = config;
+const START_DATE = new Date(START_DAY).getTime();
 const END_DATE = Date.now();
 // STANDARD GLOBALS
 const { ACCESS_TOKEN, ACCESS_TOKEN_SECRET, API_KEY, API_KEY_SECRET, BEARER_TOKEN } = process.env;
@@ -40,6 +41,7 @@ const getUserId = async (username) => {
 
 // returns an array of tweets containing specific keywords
 const filterTweetsByKeywords = (tweets, keywords) => {
+  console.log({keywords})
   const filteredTweets = [];
   // push a flattened array of unique tweets that include at least one keyword from keywords
   keywords.forEach((keyword) => {
@@ -99,6 +101,7 @@ try {
     const tweets = await getTweetsByUser(START_DATE, END_DATE, userId);
     // filter tweets of user containing specific keywords
     const filteredTweets = filterTweetsByKeywords(tweets, KEYWORDS);
+
     const tweetsString = JSON.stringify(filteredTweets);
     // output tweets and ids to text file
     fs.writeFile('./tweets-to-delete.json', tweetsString, (err) => err ? console.log(err) : console.log('saved tweets as JSON'));

@@ -105,3 +105,4 @@ dist
 
 # tweet output
 tweets-to-delete.json
+config.js
