@@ -101,7 +101,7 @@ try {
     const filteredTweets = filterTweetsByKeywords(tweets, KEYWORDS);
     const tweetsString = JSON.stringify(filteredTweets);
     // output tweets and ids to text file
-    fs.writeFile('./questionable-tweets.json', tweetsString, (err) => err ? console.log(err) : console.log('saved tweets as JSON'));
+    fs.writeFile('./tweets-to-delete.json', tweetsString, (err) => err ? console.log(err) : console.log('saved tweets as JSON'));
 
     // await deleteTweets(filteredTweets);
   })();
