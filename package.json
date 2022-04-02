@@ -11,8 +11,10 @@
   "dependencies": {
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
+    "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "node": "^17.7.2",
-    "twitter-api-sdk": "^1.0.2"
+    "oauth": "^0.9.15",
+    "twit": "^2.2.11"
   }
 }
